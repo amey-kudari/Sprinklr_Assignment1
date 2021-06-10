@@ -15,6 +15,16 @@ function setActive(id){
     display.alt = pageData[current-1].title;
 }
 
+function truncate(ptext){ // truncate text based on browser size
+    let maxLength = parseInt(20*window.innerWidth/window.screen.width); // by trial and error, max number of charecters 
+    let segLength = (maxLength-3) // length of prefix and suffix
+    if(maxLength >= ptext.length){
+        return ptext; // return text as it fits in the browser
+    } else {
+        return ptext.slice(0,segLength) + "..." + ptext.slice(-segLength,)
+    }
+}
+
 // function that creates elements and renders the page after data is fetched from Untitled file
 function renderpage(data){
     pageData = data;
@@ -23,6 +33,7 @@ function renderpage(data){
     data.forEach(element => {
         let item = document.createElement('div');
         item.classList.add("item");
+        item.setAttribute("data-filetype", "txt");
         item.id = "item" + String(itemid);
 
         let thumbnail = document.createElement('img');
@@ -30,7 +41,7 @@ function renderpage(data){
         thumbnail.src = element.previewImage;
 
         let title = document.createElement('p');
-        title.innerHTML = element.title;
+        title.innerHTML = truncate(element.title);
 
         item.appendChild(thumbnail);
         item.appendChild(title);
@@ -84,4 +95,8 @@ fetch('Untitled')
         }
     ]
     renderpage(data);
+})
+
+window.addEventListener('resize', ()=>{
+    window.location.reload();
 })
