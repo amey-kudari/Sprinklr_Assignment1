@@ -32,6 +32,9 @@ img{
     float: right;
     border-radius: 5px;
     padding: 5px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .active {
     color: white;
@@ -45,5 +48,5 @@ img{
     width: 50%;
 }
 p{
-    overflow-x: hidden;
+    font-family:verdana;
 }

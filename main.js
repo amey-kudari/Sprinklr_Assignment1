@@ -9,7 +9,7 @@ function setActive(id){
     const itemid = "#item" + id;
     document.querySelector(itemid).classList.add('active');
     current = id;
-    document.querySelector("#caption").innerHTML = pageData[current-1].title;;
+    document.querySelector("#caption").innerHTML = pageData[current-1].title;
     const display = document.querySelector("#display");
     display.src = pageData[current-1].previewImage;
     display.alt = pageData[current-1].title;
@@ -19,7 +19,7 @@ function setActive(id){
 function renderpage(data){
     pageData = data;
     const itemlist = document.querySelector('.nav');
-    itemid = 1
+    let itemid = 1; // assign a unique id to each list option
     data.forEach(element => {
         let item = document.createElement('div');
         item.classList.add("item");
@@ -47,9 +47,9 @@ function renderpage(data){
     window.addEventListener("keyup", e => {
         let n = data.length;
         if(e.key === "ArrowUp"){
-            current = (current - 2 + n)%5 + 1;
+            current = (current - 2 + n)%5 + 1; // code to decrease current id by 1, and rotate if needed
         } else if (e.key === "ArrowDown")  {
-            current = current%n + 1;
+            current = current%n + 1; // code to increase current id by 1, and rotate if needed
         }
         setActive(current);
     })
