@@ -10,6 +10,7 @@ div{
 .nav{
     flex:1;
     padding-right: 1rem;
+    max-width: 50%;
 }
 
 .image{
@@ -41,7 +42,7 @@ img{
 }
 
 .item p{
-    white-space: nowrap;
+    /* white-space: nowrap; */
     display:flex;
 }
 
@@ -58,6 +59,7 @@ img{
     direction: rtl;
     white-space: nowrap;
 }
+
 
 .active {
     color: white;
