@@ -66,7 +66,7 @@ function renderpage(data){
     })
 }
 
-// fetch data from given json file (name = 'Untitled')
+// fetch data from json file named 'Untitled'
 fetch('Untitled')
 .then(Response => Response.json())
 .then(data => renderpage(data))
