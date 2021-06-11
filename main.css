@@ -46,10 +46,17 @@ img{
 }
 
 .prefix{
-    max-width: 80%;
+    max-width: 50%;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.suffix{
+    max-width: 50%;
+    overflow: hidden;
+    direction: rtl;
+    white-space: nowrap;
 }
 
 .active {

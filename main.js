@@ -34,10 +34,12 @@ function renderpage(data){
         // when truncated, the suffix will be visible
         let title = document.createElement("p");
         let title1 = document.createElement("div");
-        title1.innerHTML = element.title.slice(0,-5);
+        let cut = parseInt(element.title.length/2);
+        title1.innerHTML = element.title.slice(0,-cut);
         title1.classList.add("prefix");
         let title2 = document.createElement("div");
-        title2.innerHTML = element.title.slice(-5,);
+        title2.classList.add("suffix");
+        title2.innerHTML = element.title.slice(-cut,);
         title.appendChild(title1);
         title.appendChild(title2);
 
