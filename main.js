@@ -96,7 +96,3 @@ fetch('Untitled')
     ]
     renderpage(data);
 })
-
-window.addEventListener("resize", ()=>{
-    window.location.reload();
-})
