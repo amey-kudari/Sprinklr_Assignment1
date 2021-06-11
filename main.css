@@ -2,23 +2,28 @@
     display: flex;
     padding-top: 5vh;
 }
+
 div{
     font-size: large;
 }
+
 .nav{
     flex:1;
     padding-right: 1rem;
 }
+
 .image{
     flex:1;
     height: 85vh;
     display: inline-block;
 }
+
 img{
     height: 100%;
     border-radius: 0.2rem;
     width: 50%;
 }
+
 .thumbnail{
     height:50px;
     width: 50px;
@@ -27,18 +32,23 @@ img{
     object-fit: cover;
     margin-right: 10px;
 }
+
 .item{
     width: 51%;
     float: right;
     border-radius: 5px;
     padding: 5px;
-    /* overflow:hidden; */
-    /* white-space:nowrap; */
-    /* text-overflow-middle:ellipsis; */
 }
+
 .item p{
     white-space: nowrap;
-    text-overflow: clip ellipsis clip 0 3ch;
+    display:flex;
+}
+
+.prefix{
+    max-width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
 }
 
@@ -46,13 +56,16 @@ img{
     color: white;
     background-color: #0854cc;
 }
+
 #display{
     object-fit: cover;
 }
+
 #caption{
     text-align: center;
     width: 50%;
 }
+
 p{
     font-family:verdana;
 }

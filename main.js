@@ -1,13 +1,13 @@
 var current = 1; // current active image
-var pageData = [] // data will be filled here after being fetched from the Untitled file
+var pageData = []; // data will be filled here after being fetched from the Untitled file
 
 // function to change the active image given id
 function setActive(id){
-    document.querySelectorAll('.item').forEach(item => {
-        item.classList.remove('active');
+    document.querySelectorAll(".item").forEach(item => {
+        item.classList.remove("active");
     })
     const itemid = "#item" + id;
-    document.querySelector(itemid).classList.add('active');
+    document.querySelector(itemid).classList.add("active");
     current = id;
     document.querySelector("#caption").innerHTML = pageData[current-1].title;
     const display = document.querySelector("#display");
@@ -15,44 +15,44 @@ function setActive(id){
     display.alt = pageData[current-1].title;
 }
 
-function truncate(ptext){ // truncate text based on browser size
-    let maxLength = parseInt(20*window.innerWidth/window.screen.width); // by trial and error, max number of charecters 
-    let segLength = (maxLength-3) // length of prefix and suffix
-    if(maxLength*2-3 >= ptext.length){
-        return ptext; // return text as it fits in the browser
-    } else {
-        return ptext.slice(0,segLength) + "..." + ptext.slice(-segLength,)
-    }
-}
-
 // function that creates elements and renders the page after data is fetched from Untitled file
 function renderpage(data){
     pageData = data;
-    const itemlist = document.querySelector('.nav');
-    let itemid = 1; // assign a unique id to each list option
-    data.forEach(element => {
-        let item = document.createElement('div');
+    const itemlist = document.querySelector(".nav");
+    // assign a unique id to each list option
+    data.forEach((element, itemid) => {
+        let item = document.createElement("div");
         item.classList.add("item");
         item.setAttribute("data-filetype", "txt");
-        item.id = "item" + String(itemid);
+        item.id = "item" + String(itemid+1);
 
-        let thumbnail = document.createElement('img');
+        let thumbnail = document.createElement("img");
         thumbnail.classList.add("thumbnail");
         thumbnail.src = element.previewImage;
 
-        let title = document.createElement('p');
-        title.innerHTML = truncate(element.title);
+        // split text into prefix and suffix so that 
+        // when truncated, the suffix will be visible
+        let title = document.createElement("p");
+        let title1 = document.createElement("div");
+        title1.innerHTML = element.title.slice(0,-5);
+        title1.classList.add("prefix");
+        let title2 = document.createElement("div");
+        title2.innerHTML = element.title.slice(-5,);
+        title.appendChild(title1);
+        title.appendChild(title2);
 
         item.appendChild(thumbnail);
         item.appendChild(title);
 
         item.addEventListener('click', e=>{
             let target = e.target;
-            if(e.target.tagName != "DIV") target = e.target.parentElement;
-            setActive(target.id.slice(4))
+            // get the parent div with image id
+            while(!target.classList.contains("item")){
+                target = target.parentElement;
+            }
+            setActive(target.id.slice(4));
         })
         itemlist.appendChild(item);
-        itemid+=1;
     });
     setActive(current);
     window.addEventListener("keyup", e => {
@@ -97,6 +97,6 @@ fetch('Untitled')
     renderpage(data);
 })
 
-window.addEventListener('resize', ()=>{
+window.addEventListener("resize", ()=>{
     window.location.reload();
 })
